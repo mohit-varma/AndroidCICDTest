@@ -83,8 +83,6 @@ jobs:
           path: ${{ env.main_project_module }}/build/outputs/bundle/release/
 
       - name: Sign App
-          if: ${{ steps.regex-match.outputs.match != '' }}
-          id: sign_app
           uses: ilharp/sign-android-release@v1.0.4
           with:
             releaseDir: app/build/outputs
