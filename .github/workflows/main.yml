@@ -83,7 +83,7 @@ jobs:
           path: ${{ env.main_project_module }}/build/outputs/bundle/release/
 
       - name: Sign App
-          uses: ilharp/sign-android-release@v1.0.4
+          uses: actions/upload-artifact@v3
           with:
             releaseDir: app/build/outputs
             signingKey: ${{ secrets.SIGNING_KEY_STORE_BASE64 }}
