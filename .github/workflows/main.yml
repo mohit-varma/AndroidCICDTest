@@ -83,21 +83,21 @@ jobs:
 #          path: ${{ env.main_project_module }}/build/outputs/bundle/release/
 
       - name: Decode Keystore
-          env:
-            ENCODED_STRING: ${{ secrets.SIGNING_KEY_STORE_BASE64 }}
-            SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
+        env:
+          ENCODED_STRING: ${{ secrets.SIGNING_KEY_STORE_BASE64 }}
+          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
 
-          run: |
-            echo $ENCODED_STRING > keystore-b64.txt
-            base64 -d keystore-b64.txt > $SIGNING_KEY_STORE_PATH
+        run: |
+          echo $ENCODED_STRING > keystore-b64.txt
+          base64 -d keystore-b64.txt > $SIGNING_KEY_STORE_PATH
 
       - name: Build Release apk
-          env:
-            SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
-            SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
-            SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
-            SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
-          run: ./gradlew assembleRelease
+        env:
+          SIGNING_KEY_STORE_PATH: ${{ secrets.SIGNING_KEY_STORE_PATH }}
+          SIGNING_KEY_ALIAS: ${{ secrets.SIGNING_KEY_ALIAS }}
+          SIGNING_KEY_PASSWORD: ${{ secrets.SIGNING_KEY_PASSWORD }}
+          SIGNING_STORE_PASSWORD: ${{ secrets.SIGNING_STORE_PASSWORD }}
+        run: ./gradlew assembleRelease
 
       - name: Build Release bundle
         env:
